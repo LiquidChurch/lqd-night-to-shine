@@ -1,0 +1,23 @@
+runtime: go111
+
+inbound_services:
+- warmup
+
+env_variables:
+
+handlers:
+- url: /(.*\.js)
+  mime_type: text/javascript
+  static_files: dist/webapp/\1
+  upload: ng-dist/(.*\.js)
+
+- url: /(.*\.(ico|eot|svg|ttf|woff|woff2))$
+  static_files: dist/webapp/\1
+  upload: ng-dist/.*\.(ico|eot|svg|ttf|woff|woff2)$
+
+- url: /assets/image/(.*\.(png))$
+  static_files: ng-dist/webapp/assets/image/\1
+  upload: ng-dist/assets/image/.*\.(png)$
+  
+- url: /.*
+  script: _go_app
