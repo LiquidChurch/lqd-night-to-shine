@@ -3,12 +3,12 @@ package main
 import (
   "time"
   "net/http"
-  "google.golang.org/appengine"
   "github.com/gorilla/mux"
   "github.com/etherlabsio/healthcheck"
+  "google.golang.org/appengine"
 )
 
-var webAppDist = "dist/webapp"
+var webAppDist = "goappsrv/dist/webapp"
 
 func main() {
   r := mux.NewRouter()

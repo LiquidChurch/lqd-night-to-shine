@@ -1,0 +1,25 @@
+runtime: go111
+
+main: goappsrv
+
+inbound_services:
+- warmup
+
+env_variables:
+
+handlers:
+- url: /(.*\.js)
+  mime_type: text/javascript
+  static_files: goappsrv/dist/webapp/\1
+  upload: goappsrv/dist/webapp/(.*\.js)
+
+- url: /(.*\.(ico|eot|svg|ttf|woff|woff2))$
+  static_files: goappsrv/dist/webapp/\1
+  upload: goappsrv/dist/webapp/.*\.(ico|eot|svg|ttf|woff|woff2)$
+
+- url: /assets/image/(.*\.(png))$
+  static_files: goappsrv/dist/webapp/assets/image/\1
+  upload: goappsrv/dist/webapp/assets/image/.*\.(png)$
+  
+- url: /.*
+  script: auto

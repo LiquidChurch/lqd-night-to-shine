@@ -50,7 +50,20 @@ $ npm start
 
 ## Deployment
 
-*Section to be filled in*
+To deploy the SPA to Google Cloud, first you have to create a Project and enable [Google App Engine](https://console.cloud.google.com/appengine/start). This SPA is in Go lanaguage based on a Standard runtime. Once the Project and App Engine enabled, deploying the application is pretty easy
+
+### GCloud Configuration
+
+To start gcloud configuration, run 
+```
+$ gcloud init
+```
+
+This will take you through an OAuth2 authentication process to get the Google Cloud account linked to the IDE. Once gcloud initilization is complete, you should be able to deploy to google cloud by running
+```
+$ npm deploy
+```
+which runs gcloud app deploy.
 
 ## Built With
 

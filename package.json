@@ -3,8 +3,10 @@
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
-    "start": "cd goappsrv && dev_appserver.py app.yaml --host 0.0.0.0 --port 3000 --admin_host 0.0.0.0 --enable_host_checking=False --clear_datastore=yes",
+    "start": "dev_appserver.py app.yaml --host 0.0.0.0 --port 3000 --admin_host 0.0.0.0 --enable_host_checking=False --clear_datastore=yes",
     "build": "cd ngwebapp && ng build",
-    "postinstall": "cd ngwebapp && npm install" 
+    "build-prod": "cd ngwebapp && ng build --prod",
+    "postinstall": "cd ngwebapp && npm install",
+    "deploy": "gcloud app deploy"
   }
 }

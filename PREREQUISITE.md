@@ -86,17 +86,22 @@ The version of Go that is being installed is 1.11. The reason for not using 1.12
 ```
 $ wget https://dl.google.com/go/go1.11.13.linux-amd64.tar.gz
 $ sudo tar -C /usr/local -xzf go1.11.13.linux-amd64.tar.gz
-$ export PATH=$PATH:/usr/local/go/bin
 $ rm go1.11.13.linux-amd64.tar.gz
-
+```
+Add in the following lines to .bashrc
+```
+# GO Configuration
+export GO111MODULE=on
+export PATH=$PATH:/usr/local/go/bin
+```
+And then reload your .bashrc
+```
+$ . ~/.bashrc
+```
+Now Go should be installed.
+```
 $ go version
 go version go1.11.13 linux/amd64
-```
-
-Remember to add the PATH export to your .bashrc file as well
-```
-# Set PATH for Go
-export PATH=$PATH:/usr/local/go/bin
 ```
 
 ## Install Google Could SDK
