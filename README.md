@@ -80,7 +80,7 @@ which runs gcloud app deploy.
 
 ## Versioning
 
-[SemVer](http://semver.org/) is used for versioning. For the versions available, see the CHANGELOG. 
+[SemVer](http://semver.org/) is used for versioning. For the versions available, see the [CHANGELOG.md](CHANGELOG.md). 
 
 ## Authors
 
