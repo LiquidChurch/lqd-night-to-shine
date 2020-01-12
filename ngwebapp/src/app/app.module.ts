@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -6,9 +6,12 @@ import { AppComponent } from './app.component';
 
 import { AlertModule, BsDropdownModule, ModalModule } from 'ngx-foundation';
 
+import { NotFoundComponent } from './pages';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -18,6 +21,7 @@ import { AlertModule, BsDropdownModule, ModalModule } from 'ngx-foundation';
     ModalModule.forRoot(),
   ],
   providers: [
+    Title
   ],
   bootstrap: [AppComponent]
 })
