@@ -13,6 +13,11 @@ handlers:
   static_files: goappsrv/dist/webapp/\1
   upload: goappsrv/dist/webapp/(.*\.js)
 
+- url: /(.*\.css)
+  mime_type: text/css
+  static_files: goappsrv/dist/webapp/\1
+  upload: goappsrv/dist/webapp/(.*\.css)
+  
 - url: /(.*\.(ico|eot|svg|ttf|woff|woff2))$
   static_files: goappsrv/dist/webapp/\1
   upload: goappsrv/dist/webapp/.*\.(ico|eot|svg|ttf|woff|woff2)$
