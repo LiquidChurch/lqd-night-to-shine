@@ -1,0 +1,103 @@
+.top-bar {
+  background-color: #DDB98B;  
+}
+
+.top-bar ul {
+  background-color: inherit;
+}
+
+.float-right {
+  background-color: #FCEFB9;  
+}
+
+.top-bar .ng-fa-icon {
+  font-size:1.4em;
+}
+
+.top-bar .name {
+  font-size:1.4em;
+  color: #06A7E2;
+}
+
+.top-bar-left {
+  padding-left:10px;
+  max-width: 220px !important;
+  flex: 1 0 auto;
+}
+
+.top-bar-right {
+  padding-right: 15px;
+  font-size:0.8em;
+  width: 250px !important; 
+}
+
+.top-bar-center {
+  flex: 1 0 auto;
+  padding-right: 15px;
+  font-size:0.8em;
+  max-width: 200px;
+  color: #06A7E2;
+}
+
+.top-bar-right ul li {
+  padding-left:5px;
+}
+
+.menu.vertical {
+  width: 0px;
+}
+
+.menu a {
+  color: #614E3A;
+  font-weight:bold;
+}
+.logo {
+  max-width: 250px;
+  padding-top: 9px;
+  font-weight: bold;
+  color: #3A2F24;
+}
+
+.button {
+  background:#00000000;
+  color: #06A7E2;
+}
+
+.is-dropdown-submenu {
+  border: 0px;
+  padding-top: 8px;
+}
+
+.item {
+  background-color: #DDB98B;
+  border-style: solid;
+  border-width: thin;
+  border-color: #9F8261;
+  opacity:.8;
+}
+
+.social-footer {
+  padding: 0.9rem 20px 0 20px;
+  background-color: #DDB98B; 
+  font-size:0.9em;
+  color:white;
+}
+
+.item-list li {
+  float: left;
+  padding-right: 15px;
+  white-space: nowrap;
+}
+
+.item-list a {
+  margin-left: -10px;
+  color: #06A7E2;
+}
+
+.ng-fa-icon {
+  color: #3A2F24;
+}
+
+.logo {
+  width: 110px;
+}

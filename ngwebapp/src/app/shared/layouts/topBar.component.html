@@ -1,0 +1,22 @@
+<div class="top-bar">
+  <div class="top-bar-left text-left">
+    <ul class="dropdown menu" dropdown #dropdown="bs-dropdown">
+      <li class="is-dropdown-submenu-parent">
+        <button dropdownToggle type="button" class="button" aria-controls="dropdown-button">
+          <fa-icon [icon]="['far', 'bars']"></fa-icon>
+        </button>
+        <ul id="dropdown-button" *dropdownMenu class="menu is-dropdown-submenu" role="menu">
+            <li role="menuitem" class="item"><a routerLink="/" routerLinkActive="active">Home</a></li>
+        </ul>
+      </li>
+      <li class="logo"><img src="/assets/images/logo.png" style="width:25px"> {{ topbarTitle }}</li> 
+    </ul>
+  </div>
+  <div class="top-bar-center">
+    <ul class="menu float-right">
+      <li>
+        <!-- placeholder -->
+      </li>
+    </ul>
+  </div>
+</div>

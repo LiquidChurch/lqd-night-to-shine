@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
@@ -10,11 +10,17 @@ import { filter, map } from 'rxjs/operators';
 })
 
 export class AppComponent implements OnInit {
-  defaultTitle = 'GAE SPA Base';
+  appTitle = 'GAE-SPA';
+  clientHeight: number;
+  clientWidth: number;
+  footerHeight: number;
   
   constructor(private title: Title,
               private router: Router,
-              private activatedRoute: ActivatedRoute) {}
+              private activatedRoute: ActivatedRoute) {
+    this.clientHeight = window.innerHeight;
+    this.clientWidth = window.innerWidth;
+  }
   
   ngOnInit() {
     const appTitle = this.title.getTitle();
@@ -30,9 +36,21 @@ export class AppComponent implements OnInit {
         return appTitle;
       })
      ).subscribe((ttl: string) => {
-      this.title.setTitle(ttl + " - " + this.defaultTitle);
+      this.title.setTitle(ttl + " - " + this.appTitle);
     });
   }
+  
+  ngAfterViewInit() {
+    console.log('AppComponent after view init');
+    if (this.clientWidth < 640 ) {
+      // this.footerHeight = document.getElementById('bottombar').offsetHeight - 3;
+      this.footerHeight = 63.39;      
+      this.clientHeight = this.clientHeight - this.footerHeight;
+    } else {
+      this.footerHeight = 63.39;
+      this.clientHeight = this.clientHeight - this.footerHeight;
+    }
+  }  
   
   setPageTitle(pageTitle: string) {
     this.title.setTitle(pageTitle);
