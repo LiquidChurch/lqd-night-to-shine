@@ -17,9 +17,9 @@ handlers:
   static_files: goappsrv/dist/webapp/\1
   upload: goappsrv/dist/webapp/.*\.(ico|eot|svg|ttf|woff|woff2)$
 
-- url: /assets/image/(.*\.(png))$
-  static_files: goappsrv/dist/webapp/assets/image/\1
-  upload: goappsrv/dist/webapp/assets/image/.*\.(png)$
+- url: /assets/images/(.*\.png)$
+  static_files: goappsrv/dist/webapp/assets/images/\1
+  upload: goappsrv/dist/webapp/assets/images/(.*\.png)
   
 - url: /.*
   script: auto
