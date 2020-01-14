@@ -9,7 +9,8 @@ import (
   graphql "github.com/graph-gophers/graphql-go"
   "github.com/graph-gophers/graphql-go/relay"
 
-   "X/goappsrv/src/gqlSchema"
+  "X/goappsrv/src/gqlSchema"
+  "X/goappsrv/src/service"
 )
 
 var webAppDist = "goappsrv/dist/webapp"
@@ -20,9 +21,9 @@ func main() {
   schema = graphql.MustParseSchema(gqlSchema.Schema, &gqlSchema.Resolver{})
   r := mux.NewRouter()
   
-  r.HandleFunc("/_ah/warmup", WarmupHandler)
   r.HandleFunc("/graphiql", GraphiQLHandler)
   r.HandleFunc("/query", QueryHandler)  
+  r.HandleFunc("/_ah/warmup", WarmupHandler)
   r.PathPrefix("/{_:.*}").HandlerFunc(WebAppHandler)
   
   http.Handle("/", r)
@@ -42,7 +43,7 @@ func WebAppHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func QueryHandler(w http.ResponseWriter, r *http.Request) {
-  http.Handle("/query", &relay.Handler{Schema: schema})
+  http.Handle("/query", service.AuthCheck(&relay.Handler{Schema: schema}))
 }
 
 func GraphiQLHandler(w http.ResponseWriter, r *http.Request) {

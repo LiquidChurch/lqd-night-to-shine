@@ -1,0 +1,76 @@
+<h4>Log In</h4>
+<button class="close-button" (click)="closeModal()" aria-label="Close modal" type="button">
+  <fa-icon [icon]="['far', 'times-square']" size="xs"></fa-icon>
+</button>
+<hr>
+
+<div *ngIf="currentUser | async; let currentUser">
+  <div *ngIf="currentUser.name == ''" class="grid-y" style="height: 200px;">            
+    <div class="grid-x">
+      <div class="cell small-10 small-offset-1 medium-6 medium-offset-3 text-center">
+        <button class="button expanded google loginButton" (click)='signinWithGoogle()'>
+        <span class="icon-google"></span>
+        <span class="text-google">Sign in with Google</span>
+        </button>
+      </div>
+    </div>
+
+    <!--div class="grid-x">
+      <div class="cell small-10 small-offset-1">
+        <div class="callout small warning">
+          <i class="fa fa-exclamation-triangle"></i> This site uses cookies. By logging in, you are agreeing to our use of cookies. Review our <a routerLink="/privacy" routerLinkActive="active" data-close>Privacy Policy</a> for more details.
+        </div>
+      </div>
+    </div-->           
+  </div>         
+
+  <div *ngIf="currentUser.name != ''" class="grid-y" style="height: 400px;">
+    <div class="cell small-8">
+      <div class="grid-x">
+        <div class="cell small-10 small-offset-1 medium-8 medium-offset-2">
+          <img class="thumbnail float-center" src="{{ currentUser.pictureURL }}" alt="User Picture">
+
+          <label>Name
+            <div class="grid-x">
+              <div class="cell small-10">
+                <h4 class="name">
+                  <span *ngIf="!isEditingName" >{{ currentUser.name }}
+                  </span>             
+                  <input *ngIf="isEditingName" type="text" [(ngModel)]="newName" placeholder="Display Name" required
+                      (keydown.enter)="editNameSubmit()" (keydown.esc)="editNameCancel()">
+                </h4>
+              </div>
+              <div *ngIf="!isEditingName" class="cell auto">
+                <button type="button" class="textbox-button" (click)='editNameOn()'>
+                  <fa-icon [icon]="['far', 'pencil-alt']"></fa-icon>
+                </button>
+              </div>
+              <div *ngIf="isEditingName" class="cell auto">
+                <button type="button" class="textbox-button" (click)='editNameSubmit()'>
+                  <fa-icon class="cta green" [icon]="['far', 'check-square']"></fa-icon>
+                </button>
+                <button type="button" class="textbox-button" (click)='editNameCancel()'>
+                  <fa-icon class="cta red" [icon]="['far', 'times-square']"></fa-icon>
+                </button>
+              </div>  
+            </div>
+          </label>
+
+          <label>E-mail
+            <h4>{{ currentUser.email }}</h4>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="cell small-4">
+      <div class="grid-x">
+        <div class="cell small-6 small-offset-3 medium-4 medium-offset-4">
+          <button class="hollow button expanded alert" (click)='signOut()'>
+            <span class="text-google">Logoff</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

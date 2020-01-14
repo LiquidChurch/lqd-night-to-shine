@@ -29,6 +29,7 @@
             ],
             "styles": [
               "src/styles.scss"
+              // { "input": "src/external-module/styles.scss", "inject": false, "bundleName": "external-module" }
             ],
             "scripts": []
           },
@@ -40,7 +41,7 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "optimization": true,
+              "optimization": { "scripts":true, "styles":false},
               "outputHashing": "all",
               "sourceMap": false,
               "extractCss": true,

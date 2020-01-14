@@ -1,5 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 
+import { UserDetail } from '../../graphqls';
+import { LoginModalComponent } from '../../modals';
+import { CurrentUserController } from '../../controllers';
+import { LoginModalService } from '../../services';
 /**
  * Top Bar Component
  */
@@ -9,12 +14,40 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['layouts.component.css'],
 })
 
-export class TopBarComponent {
+export class TopBarComponent implements OnInit {
   /**
    * Topbar Title
    */
   @Input() topbarTitle: string;
 
-  constructor() {
+  /**
+   * CurrentUser Object
+   */
+  currentUser: Observable<UserDetail>;
+
+  /**
+   * @ignore
+   */
+  private subscription: Subscription;
+  
+  constructor(private loginModalService: LoginModalService,
+              private currentUserController: CurrentUserController) {
   }
+  
+  /**
+   * Initialize Top Bar Component and calls checkUser()
+   */
+  ngOnInit() {
+    this.currentUserController.updateCurrentUser();
+    this.currentUser = this.currentUserController.getCurrentUser();
+  }
+
+  /**
+   * Opens [LoginModalComponent]{@link LoginModalComponent}
+   */
+  openModal(): void {
+    this.loginModalService.open().subscribe((action: string) => {
+    });
+  }
+
 }

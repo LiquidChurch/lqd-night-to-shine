@@ -15,7 +15,18 @@
   <div class="top-bar-center">
     <ul class="menu float-right">
       <li>
-        <!-- placeholder -->
+        <button (click)="openModal()">
+          <div *ngIf="currentUser | async; let currentUser">
+            <div *ngIf="currentUser.name == ''">    
+              <fa-icon [icon]="['far', 'sign-in']"></fa-icon>
+            </div>
+            <div *ngIf="currentUser.name != ''">
+              <div class="name">
+                {{ currentUser.name }}
+              </div>
+            </div>
+          </div>
+        </button>
       </li>
     </ul>
   </div>

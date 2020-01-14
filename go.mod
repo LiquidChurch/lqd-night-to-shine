@@ -7,6 +7,9 @@ require (
 	google.golang.org/appengine v1.6.5
 )
 
-require X v0.0.0
+require (
+	X v0.0.0
+	github.com/oklog/ulid v1.3.1
+)
 
 replace X v0.0.0 => ./
