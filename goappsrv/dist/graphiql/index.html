@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/graphiql/0.10.2/graphiql.css" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/1.1.0/fetch.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.5.4/react.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.5.4/react-dom.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/graphiql/0.10.2/graphiql.js"></script>
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+	</head>
+	<body style="width: 100%; height: 100%; margin: 0; overflow: hidden;">
+		<div id="graphiql" style="height: 100vh;">Loading...</div>
+		<script>
+			function graphQLFetcher(graphQLParams) {
+				
+				// The ID token you need to pass to your backend:
+        		var name = "id_token=";
+				
+				var decodedCookie = decodeURIComponent(document.cookie);
+				var ca = decodedCookie.split(';');
+				var id_token = "";
+				for(var i = 0; i <ca.length; i++) {
+					var c = ca[i];
+					while (c.charAt(0) == ' ') {
+						c = c.substring(1);
+					}
+					if (c.indexOf(name) == 0) {
+						id_token = c.substring(name.length, c.length);
+					}
+				}				
+				return fetch("/query", {
+					method: "post",
+					headers: {
+						Authorization: 'Bearer ' + id_token
+					},
+					body: JSON.stringify(graphQLParams),
+					credentials: "include",
+				}).then(function (response) {
+					return response.text();
+				}).then(function (responseBody) {
+					try {
+						return JSON.parse(responseBody);
+					} catch (error) {
+						return responseBody;
+					}
+				});
+			}
+			ReactDOM.render(
+				React.createElement(GraphiQL, {fetcher: graphQLFetcher}),
+				document.getElementById("graphiql")
+			);
+		</script>
+	</body>
+</html>
