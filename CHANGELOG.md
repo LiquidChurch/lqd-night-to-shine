@@ -7,22 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.0.2] - 2020-01-12
+## [0.0.1] - 2020-01-14
 
 ### Added
 
-- Added in Zurb Foundations and Font Awesome packages.
-- Enabled dynamic page titling.
-- Setup basic page layout with Topbar and Bottombar.
-- Added in Homepage and Not Found page.
-
-## [0.0.1] - 2020-01-10
-
-### Added
-
-- Initial version of Starter Base with a default NGApp and a basic Web Server.
-- Setup all basic npm run commands necessary for both local development and deployment.
-- Added in [PREREQUISITE](PREREQUISITE.md) file to detail out how to setup CodeAnywhere IDE.
-- Added in this CHANGELOG.
+- Loaded in Project Starter Base.
+- Branded the site with Liquid Church logo and update titles.
 
 *Back to [README.md](README.md)*

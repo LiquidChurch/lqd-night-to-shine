@@ -44,10 +44,10 @@ export class AppComponent implements OnInit {
     console.log('AppComponent after view init');
     if (this.clientWidth < 640 ) {
       // this.footerHeight = document.getElementById('bottombar').offsetHeight - 3;
-      this.footerHeight = 63.39;      
+      this.footerHeight = 66.39 - 2.5;      
       this.clientHeight = this.clientHeight - this.footerHeight;
     } else {
-      this.footerHeight = 63.39;
+      this.footerHeight = 66.39 - 2.5;
       this.clientHeight = this.clientHeight - this.footerHeight;
     }
   }  

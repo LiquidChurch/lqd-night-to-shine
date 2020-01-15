@@ -6,11 +6,11 @@ inbound_services:
 - warmup
 
 env_variables:
-    GCLOUD_AUD: '418258098418-24oc4f3fv7rintio2pd0uc0i0v22m8nq.apps.googleusercontent.com'
+    GCLOUD_AUD: '1039066952699-og870ghai66l563k6orgdas5hii0qdap.apps.googleusercontent.com'
     JWT_SECRET: 'KaNdRgUkXp2s5v8y/B?E(H+MbQeShVmYq3t6w9z$C&F)J@NcRfUjWnZr4u7x!A%D'
     JWT_DURATION_DAY: '30'
     JWT_REFRESH_MIN: '1'
-    ADMIN_SID : '104040473992413612315'
+    ADMIN_SID : '108355064967192769053'
 
 handlers:
 - url: /(.*\.js)
