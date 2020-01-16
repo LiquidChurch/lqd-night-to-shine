@@ -10,7 +10,7 @@ import { filter, map } from 'rxjs/operators';
 })
 
 export class AppComponent implements OnInit {
-  appTitle = 'GAE-SPA';
+  appTitle = 'Liquid Church';
   clientHeight: number;
   clientWidth: number;
   footerHeight: number;
