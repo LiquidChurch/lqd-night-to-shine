@@ -22,7 +22,7 @@ import { BarcodeScannerComponent } from './shared/tools';
 
 import { LoginModalComponent } from './modals';
 
-import { LoginModalService } from './services';
+import { LoginModalService, BarcodeService } from './services';
 
 import { CurrentUserController } from './controllers';
 
@@ -54,6 +54,7 @@ import { CurrentUserController } from './controllers';
     Title,
     CookieService,
     LoginModalService,
+    BarcodeService,
     CurrentUserController,
     { provide: AuthServiceConfig, useFactory: AuthConfig }
   ],

@@ -5,7 +5,7 @@ import { HomePageComponent, NotFoundComponent, GuestLookupComponent } from './pa
 
 const routes: Routes = [
   {path: '', component: HomePageComponent, data: {title: 'NTS'}},
-  {path: 'guest-lookup', component: GuestLookupComponent, date : {title: 'Guest Lookup - NTS'}},
+  {path: 'guest-lookup', component: GuestLookupComponent, data : {title: 'Guest Lookup - NTS'}},
   {path: '404', component: NotFoundComponent, data: {title: '404'}},
   {path: '**', redirectTo: '/404'}
 ];

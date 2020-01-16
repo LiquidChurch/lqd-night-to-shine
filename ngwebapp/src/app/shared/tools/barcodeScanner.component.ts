@@ -6,6 +6,8 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { BarcodeFormat } from '@zxing/library';
 
+import { BarcodeService } from '../../services';
+
 /**
  * Barcode Scanner component
  */
@@ -34,7 +36,7 @@ export class BarcodeScannerComponent {
   
   qrResultString: string;
   
-  constructor() { }
+  constructor(private barcodeService: BarcodeService) { }
 
   onHasPermission(has: boolean) {
     this.hasPermission = has;
@@ -67,6 +69,7 @@ export class BarcodeScannerComponent {
   }
 
   onCodeResult(resultString: string) {
+    this.barcodeService.success(resultString);
     console.log(resultString)
   }
 }
