@@ -1,0 +1,57 @@
+<div class="grid-x">
+  <div class="cell small-12">
+    <div *ngIf="hasPermission; else noPermission">
+      <div *ngIf="hasDevices; else noDevice">
+          Scan a badge for information.
+      </div>
+    </div>
+    
+    <ng-template #noPermission>
+        Please enable camera.
+    </ng-template>
+
+    <ng-template #noDevice>
+        No Cameras Detected.
+    </ng-template>
+  </div>
+</div>
+
+<div class="grid-x">
+  <div class="cell small-2">
+  </div>
+  <div class="cell small-8">
+    <ul *ngIf="hasDevices" class="dropdown vertical menu" dropdown #dropdown="bs-dropdown">
+      <li class="is-dropdown-submenu-parent">
+        <button dropdownToggle type="button" class="dropdown clear button primary" aria-controls="dropdown-button">
+          Camera Selection
+        </button>
+        <ul id="dropdown-button" *dropdownMenu class="menu is-dropdown-submenu" role="menu">
+          <div *ngFor="let device of availableDevices">
+            <li role="menuitem"><a (click)="onDeviceSelectChange(device.deviceId)">
+             {{device.label}}</a></li>
+          </div>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="cell small-2">
+    <div *ngIf="torchAvailable$ | async">        
+      <button type="button" class="clear button" [ngClass]="(torchEnabled)?'success':'alert'" (click)="toggleTorch()">
+        <fa-icon [icon]="['far', 'flashlight']"></fa-icon>
+      </button>
+      </div>
+  </div>
+</div>
+
+<div class="grid-x">
+  <div class="cell">
+    <zxing-scanner [torch]="torchEnabled" [(device)]="currentDevice" [formats]="formatsEnabled" 
+                   (camerasFound)="onCamerasFound($event)" 
+                   (camerasNotFound)="onCamerasNotFound($event)" 
+                   (torchCompatible)="onTorchCompatible($event)"
+                   (permissionResponse)="onHasPermission($event)"
+                   (scanSuccess)="onCodeResult($event)">
+    </zxing-scanner>
+  </div>
+</div> 
+  

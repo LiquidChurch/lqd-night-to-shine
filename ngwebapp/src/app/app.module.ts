@@ -11,12 +11,15 @@ import { faBars, faExclamationTriangle, faSignIn, faTimesSquare, faPencilAlt, fa
 import { CookieService } from 'ngx-cookie-service';
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
 import { AlertModule, BsDropdownModule, ModalModule } from 'ngx-foundation';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 import { AuthConfig } from './configs';
 import { GraphQLModule } from './graphql.module';
 
-import { HomePageComponent, NotFoundComponent } from './pages';
+import { HomePageComponent, NotFoundComponent, GuestLookupComponent } from './pages';
 import { TopBarComponent, BottomBarComponent } from './shared/layouts';
+import { BarcodeScannerComponent } from './shared/tools';
+
 import { LoginModalComponent } from './modals';
 
 import { LoginModalService } from './services';
@@ -28,9 +31,11 @@ import { CurrentUserController } from './controllers';
     AppComponent,
     HomePageComponent,
     NotFoundComponent,
+    GuestLookupComponent,
     TopBarComponent,
     BottomBarComponent,
-    LoginModalComponent
+    LoginModalComponent,
+    BarcodeScannerComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +45,7 @@ import { CurrentUserController } from './controllers';
     AlertModule.forRoot(),
     BsDropdownModule.forRoot(),
     FontAwesomeModule,
+    ZXingScannerModule,
     SocialLoginModule,
     GraphQLModule,
     HttpClientModule,

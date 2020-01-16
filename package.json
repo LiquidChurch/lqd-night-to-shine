@@ -1,6 +1,6 @@
 {
-  "name": "gae-spa-base",
-  "version": "0.0.2",
+  "name": "night-to-shine",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "dev_appserver.py app.yaml --host 0.0.0.0 --port 3000 --admin_host 0.0.0.0 --enable_host_checking=False --clear_datastore=yes",
