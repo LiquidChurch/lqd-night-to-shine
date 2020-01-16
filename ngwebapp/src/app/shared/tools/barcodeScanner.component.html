@@ -47,7 +47,7 @@
   <div class="cell">
     <zxing-scanner [torch]="torchEnabled" [(device)]="currentDevice" [formats]="formatsEnabled" 
                    (camerasFound)="onCamerasFound($event)" 
-                   (camerasNotFound)="onCamerasNotFound($event)" 
+                   (camerasNotFound)="onCamerasNotFound()" 
                    (torchCompatible)="onTorchCompatible($event)"
                    (permissionResponse)="onHasPermission($event)"
                    (scanSuccess)="onCodeResult($event)">
