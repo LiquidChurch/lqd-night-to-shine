@@ -52,6 +52,7 @@ export class BarcodeScannerComponent {
   onCamerasNotFound(): void {
     console.log("Camera Not Found");
     setTimeout(() => this.hasPermission = true, 10);
+    this.barcodeService.success("recH4OTvmw9uYXxr9");
   }
   
   onTorchCompatible(isCompatible: boolean): void {

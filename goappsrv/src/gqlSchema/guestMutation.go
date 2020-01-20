@@ -106,7 +106,7 @@ func (r *Resolver) UpdateGuests(ctx context.Context, args *struct{AirTableId str
     log.Println(respJson.Records[i].Fields)
     itemID := "" 
 
-    foundItem, loadItemErr := model.LoadItemDetailByExtID(c.Ctx, respJson.Records[i].Id, "guest", "00000000000000000000000001")
+    foundItem, loadItemErr := model.LoadItemDetailByExtID(c.Ctx, respJson.Records[i].Id)
     if loadItemErr != nil {
       helper.Log(c, "warning", "Error loading item detail by ref ID", "uid", c.UID, "refId", respJson.Records[i].Id)
     }
@@ -117,7 +117,7 @@ func (r *Resolver) UpdateGuests(ctx context.Context, args *struct{AirTableId str
     bytesField, _ := json.Marshal(respJson.Records[i].Fields)
     guestItem := &model.ItemDetail {
       ID: itemID,
-      ParentID: "00000000000000000000000001",
+      ParentID: args.AirTableId,
       Type: "guest",
       ExtID: respJson.Records[i].Id,
       Name: respJson.Records[i].Fields.GuestName,

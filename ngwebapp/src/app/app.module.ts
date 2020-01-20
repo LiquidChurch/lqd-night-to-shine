@@ -19,6 +19,7 @@ import { GraphQLModule } from './graphql.module';
 import { HomePageComponent, NotFoundComponent, GuestLookupComponent } from './pages';
 import { TopBarComponent, BottomBarComponent } from './shared/layouts';
 import { BarcodeScannerComponent } from './shared/tools';
+import { GuestInfoComponent, GuestInfoTable } from './shared/displays';
 
 import { LoginModalComponent } from './modals';
 
@@ -34,6 +35,8 @@ import { CurrentUserController } from './controllers';
     GuestLookupComponent,
     TopBarComponent,
     BottomBarComponent,
+    GuestInfoComponent,
+    GuestInfoTable,
     LoginModalComponent,
     BarcodeScannerComponent,
   ],

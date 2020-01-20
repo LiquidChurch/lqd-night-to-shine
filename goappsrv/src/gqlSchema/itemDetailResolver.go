@@ -33,7 +33,9 @@ func (r *Resolver) GetItem(ctx context.Context, args *struct{Lookup itemFilter})
     case "Int":
       foundItem, loadItemErr = model.LoadItemDetail(c.Ctx, args.Lookup.Id)
     case "Ext":
-      foundItem, loadItemErr = model.LoadItemDetailByExtID(c.Ctx, args.Lookup.Id, args.Lookup.Type, args.Lookup.ParentId)
+      foundItem, loadItemErr = model.LoadItemDetailByExtID(c.Ctx, args.Lookup.Id)
+    case "ETP":
+      foundItem, loadItemErr = model.LoadItemDetailByETP(c.Ctx, args.Lookup.Id, args.Lookup.Type, args.Lookup.ParentId)
     default:
       helper.Log(c, "warning", "IdType not valid", "uid", c.UID, "id", args.Lookup.Id)
       foundItem = model.NullItemDetail

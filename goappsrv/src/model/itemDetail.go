@@ -79,7 +79,26 @@ func LoadItemsByType(ctx context.Context, itemType string, parentID string) (*[]
   return &foundRecords, nil
 }
 
-func LoadItemDetailByID(ctx context.Context, extID string, itemType string, parentID string) (*ItemDetail, error) {
+func LoadItemDetailByExtID(ctx context.Context, extID string) (*ItemDetail, error) {
+  dbKind := "ItemDetail"
+  
+  var foundRecords []ItemDetail
+  
+  query := datastore.NewQuery(dbKind).
+           Filter("ExtID =", extID)
+  
+  if _, err := query.GetAll(ctx, &foundRecords); err != nil {
+    return nil, err
+  }
+  
+  if len(foundRecords) == 0 {
+    foundRecords = append(foundRecords, *NullItemDetail)
+  }
+  
+  return &foundRecords[0], nil  
+}
+
+func LoadItemDetailByETP(ctx context.Context, extID string, itemType string, parentID string) (*ItemDetail, error) {
   dbKind := "ItemDetail"
   
   var foundRecords []ItemDetail
@@ -100,23 +119,3 @@ func LoadItemDetailByID(ctx context.Context, extID string, itemType string, pare
   return &foundRecords[0], nil  
 }
 
-func LoadItemDetailByExtID(ctx context.Context, extID string, itemType string, parentID string) (*ItemDetail, error) {
-  dbKind := "ItemDetail"
-  
-  var foundRecords []ItemDetail
-  
-  query := datastore.NewQuery(dbKind).
-           Filter("ExtID =", extID).
-           Filter("Type =", itemType).
-           Filter("ParentID =", parentID)
-  
-  if _, err := query.GetAll(ctx, &foundRecords); err != nil {
-    return nil, err
-  }
-  
-  if len(foundRecords) == 0 {
-    foundRecords = append(foundRecords, *NullItemDetail)
-  }
-  
-  return &foundRecords[0], nil  
-}

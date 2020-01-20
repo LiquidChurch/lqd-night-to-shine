@@ -1,0 +1,10 @@
+<div class="grid-x">
+  <div class="cell small-12">
+    <h4>Guest info</h4>
+  </div>
+  <div class="cell small-12">
+      <div *ngIf="guestDescription | async; let guestDescription">
+         <guestInfoTable [guestInfo]="guestDescription"></guestInfoTable>
+    </div>
+  </div>
+</div>
