@@ -36,7 +36,8 @@ export class BarcodeScannerComponent {
   
   qrResultString: string;
   
-  constructor(private barcodeService: BarcodeService) { }
+  constructor(private barcodeService: BarcodeService,
+              private router: Router) { }
 
   onHasPermission(has: boolean) {
     this.hasPermission = has;
@@ -69,7 +70,8 @@ export class BarcodeScannerComponent {
   }
 
   onCodeResult(resultString: string) {
-    this.barcodeService.success(resultString);
-    console.log(resultString)
+    if (resultString.length >= 17) {
+      this.router.navigate(['/' + resultString.substr(resultString.length - 17)]);
+    }
   }
 }

@@ -7,18 +7,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
-import { faBars, faExclamationTriangle, faSignIn, faTimesSquare, faPencilAlt, faCheckSquare } from '@fortawesome/pro-regular-svg-icons';
+import { faSignIn, faTimesSquare, faPencilAlt, faCheckSquare, faPlusCircle, faCopyright, faBars, faUserAlt, faExclamationTriangle, faFlashlight, faArrowAltSquareLeft, faQrcode, faHome } from '@fortawesome/pro-regular-svg-icons';
 import { CookieService } from 'ngx-cookie-service';
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
-import { AlertModule, BsDropdownModule, ModalModule } from 'ngx-foundation';
+import { AlertModule, BsDropdownModule, ModalModule, OffcanvasModule } from 'ngx-foundation';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 import { AuthConfig } from './configs';
 import { GraphQLModule } from './graphql.module';
 
-import { HomePageComponent, NotFoundComponent, GuestLookupComponent } from './pages';
+import { HomePageComponent, NotFoundComponent, GuestLookupComponent, BarcodeLookupComponent } from './pages';
+import { SiteMapComponent, EventScheduleComponent, RoleDocsComponent } from './pages';
+
 import { TopBarComponent, BottomBarComponent } from './shared/layouts';
 import { BarcodeScannerComponent } from './shared/tools';
+import { GuestInfoComponent, GuestInfoTable, TeamLeadTable } from './shared/displays';
 
 import { LoginModalComponent } from './modals';
 
@@ -32,10 +35,17 @@ import { CurrentUserController } from './controllers';
     HomePageComponent,
     NotFoundComponent,
     GuestLookupComponent,
+    BarcodeLookupComponent,
     TopBarComponent,
     BottomBarComponent,
+    GuestInfoComponent,
+    GuestInfoTable,
+    TeamLeadTable,
     LoginModalComponent,
     BarcodeScannerComponent,
+    SiteMapComponent,
+    EventScheduleComponent,
+    RoleDocsComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +54,7 @@ import { CurrentUserController } from './controllers';
     ModalModule.forRoot(),
     AlertModule.forRoot(),
     BsDropdownModule.forRoot(),
+    OffcanvasModule.forRoot(),
     FontAwesomeModule,
     ZXingScannerModule,
     SocialLoginModule,
@@ -65,11 +76,18 @@ import { CurrentUserController } from './controllers';
 })
 export class AppModule { 
   constructor(library: FaIconLibrary) {
-    library.addIcons(faBars);
-    library.addIcons(faExclamationTriangle);
+    library.addIcons(faCopyright);
     library.addIcons(faSignIn);
     library.addIcons(faTimesSquare);
     library.addIcons(faPencilAlt);
     library.addIcons(faCheckSquare);
+    library.addIcons(faPlusCircle);
+    library.addIcons(faBars);
+    library.addIcons(faUserAlt);
+    library.addIcons(faExclamationTriangle);
+    library.addIcons(faFlashlight);
+    library.addIcons(faArrowAltSquareLeft);
+    library.addIcons(faQrcode);
+    library.addIcons(faHome);
   }
 }

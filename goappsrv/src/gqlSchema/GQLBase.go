@@ -19,6 +19,8 @@ var Schema = `
     sessionDetail(): SessionDetail
     # Get Current User Details
     getUser(): UserDetail
+    # Get Item By RefId
+    getItem(lookup: ItemFilter!): ItemDetail
   }
 
   # Mutation requsts. Upsert fields
@@ -27,6 +29,14 @@ var Schema = `
     sessionDetail(): SessionDetail
     # Refresh Current User Details
     getUser(): UserDetail
+    # Create Item Detail endpoint
+    postItemDetail(postItem: ItemInput!): ItemDetail
+    # Get Guest update
+    updateGuests(airTableId: String!): ImportStatus
+    # Get Team Lead update
+    updateTeamLeads(airTableId: String!): ImportStatus
+    # Update Air Table Records
+    updateAirTable(params: UpdateAirTable!): ImportStatus
   }
 
   type HealthDetail {
@@ -61,5 +71,63 @@ var Schema = `
     company: String!
     # User Role
     role: String!
+  }
+
+  # Item Detail
+  type ItemDetail{
+    # Item ID
+    id: String!
+    # Item Parent ID
+    parentId: String!
+    # Item Type
+    type: String!
+    # Item Name
+    name: String!
+    # Item External ID
+    extId: String!
+    # Item Description
+    description: String!
+    # Item PictureURL
+    webURL: String!
+    # Item Background Color
+    color: String!
+  }
+  
+  # Import Status
+  type ImportStatus{
+    # Number Created
+    created: Int!
+    # Number Modified
+    modified: Int!
+    # Number Skipped
+    skipped: Int!
+    # Total records
+    total: Int!
+  }
+  
+  # Get Item Filter 
+  input ItemFilter {
+    id: String!
+    type: String!
+    parentId: String!
+    idType: String!
+  }
+
+  # Update Airtable Input
+  input UpdateAirTable {
+    airTableId: String!
+    recordType: String!
+    forceUpdate: Boolean!
+  }
+  
+  # Post Item Input
+  input ItemInput {
+    id: String!
+    type: String!
+    name: String!
+    description: String!
+    webURL: String!
+    color: String!
+    extId: String!
   }
  `

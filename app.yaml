@@ -31,5 +31,10 @@ handlers:
   static_files: goappsrv/dist/webapp/assets/images/\1
   upload: goappsrv/dist/webapp/assets/images/(.*\.png)
   
+- url: /assets/images/(.*\.jpg)$
+  static_files: goappsrv/dist/webapp/assets/images/\1
+  upload: goappsrv/dist/webapp/assets/images/(.*\.jpg)
+  
 - url: /.*
   script: auto
+  secure: always

@@ -53,9 +53,10 @@
     "typescript": "~3.5.3"
   },
   "browserslist": [
-    "last 1 version",
-    "> 1%",
-    "maintained node versions",
-    "not dead"
+    "last 2 versions",
+    "not dead",
+    "> 0.5%",
+    "not IE 11",
+    "ios_saf 9-13"
   ]
 }

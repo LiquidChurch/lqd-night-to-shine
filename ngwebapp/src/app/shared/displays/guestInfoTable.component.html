@@ -1,0 +1,106 @@
+<div>
+  <ng-container *ngIf="obj != undefined">
+  <table>
+    <tbody class="fixed-header">
+       <tr>
+        <td>Full Name</td>
+        <td>{{ obj['Guest First Name'] }} {{ obj['Guest Last Name'] }}</td>
+      </tr>
+      <tr>
+        <td>Prom Day - Arrival Time</td>
+        <td>{{ obj['Prom Day'] }} - {{ obj['Arrival Time'] }}</td>
+      </tr>
+      <tr>
+        <td>Gender</td>
+        <td>{{ obj['Gender'] }}</td>
+      </tr>
+      <tr>
+        <td>Level of Supervision</td>
+        <td>{{ obj['Level of Supervision'] }}</td>
+      </tr>
+      <tr>
+        <td>SN Description</td>
+        <td>{{ obj['SN Description'] }}</td>
+      </tr>
+       <tr>
+        <td>Additional Notes</td>
+        <td>{{ obj['NOTES'] }}</td>
+      </tr>
+      <tr>
+        <td>Respite Room</td>
+        <td>
+          <ng-container *ngIf="obj != undefined">
+            <li *ngFor="let object of obj['Respite Room']">
+              {{object}}
+            </li>
+          </ng-container>
+        </td>
+      </tr>
+      <tr>
+        <td>Specific Buddy</td>
+        <td>{{ obj['Specific Buddy'] }}</td>
+      </tr>
+      <tr>
+        <td>Level of Bathroom Assistance</td>
+        <td>{{ obj['Level of Bathroom Assistance'] }}</td>
+      </tr>
+      <tr>
+        <td>Medication During Prom</td>
+        <td>{{ obj['Medication During Prom'] }}</td>
+      </tr>
+      <tr>
+        <td>Time of Medication</td>
+        <td>{{ obj['Time of Medication'] }}</td>
+      </tr>
+      <tr>
+        <td>Dietary Restrictions</td>
+        <td>
+          <ng-container *ngIf="obj != undefined">
+            <li *ngFor="let object of obj['Dietary Restrictions']">
+              {{object}}
+            </li>
+          </ng-container>
+        </td>
+      </tr>
+      <tr>
+        <td>Sensory</td>
+        <td>
+          <ng-container *ngIf="obj != undefined">
+            <li *ngFor="let object of obj['Sensory']">
+              {{object}}
+            </li>
+          </ng-container>
+        </td>
+      </tr>
+      <tr>
+        <td>Cherry On Top</td>
+        <td>{{ obj['Cherry On Top'] }}</td>
+      </tr>
+      <tr>
+        <td>Limo</td>
+        <td>{{ obj['Limo'] }}</td>
+      </tr>
+      <tr>
+        <td>Pager Number</td>
+        <td>{{ obj['Pager Number'] }}</td>
+      </tr>
+      <tr>
+        <td>Contact Name</td>
+        <td>{{ obj['Contact Name'] }}</td>
+      </tr>
+      <tr>
+        <td>Contact Email</td>
+        <td><a href="mailto:{{ obj['Email'] }}">{{ obj['Email'] }}</a></td>
+      </tr>
+      <tr>
+        <td>Contact Number</td>
+        <td><a href="tel:{{ obj['Contact #'] }}">{{ obj['Contact #'] }}</a></td>
+      </tr>
+      <tr>
+        <td>Mailing Address</td>
+        <td>{{ obj['Mailing Address'] }}</td>
+      </tr>
+    </tbody>
+  </table>
+  </ng-container>
+</div>

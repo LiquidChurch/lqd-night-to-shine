@@ -1,0 +1,18 @@
+.right-button {
+  font-size: 1.5em;
+  margin-top: 15px;
+  line-height: 1;
+  color: #8a8a8a;
+  cursor: pointer;
+}
+
+.back-button:hover, .back-button:focus {
+  color: #0a0a0a;
+}
+
+span.cls_002{font-family:Arial,serif;font-size:24.1px;color:rgb(0,161,222);font-weight:bold;font-style:normal;text-decoration: none}
+div.cls_002{font-family:Arial,serif;font-size:24.1px;color:rgb(0,161,222);font-weight:bold;font-style:normal;text-decoration: none}
+span.cls_004{font-family:Arial,serif;font-size:14.0px;color:rgb(0,0,0);font-weight:bold;font-style:normal;text-decoration: none}
+div.cls_004{font-family:Arial,serif;font-size:14.0px;color:rgb(0,0,0);font-weight:bold;font-style:normal;text-decoration: none}
+span.cls_005{font-family:Arial,serif;font-size:14.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
+div.cls_005{font-family:Arial,serif;font-size:14.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}

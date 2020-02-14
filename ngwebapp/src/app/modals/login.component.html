@@ -1,9 +1,12 @@
-<h4>Log In</h4>
+<h4>Admin Log In</h4>
 <button class="close-button" (click)="closeModal()" aria-label="Close modal" type="button">
   <fa-icon [icon]="['far', 'times-square']" size="xs"></fa-icon>
 </button>
 <hr>
 
+<h4>
+  This login is for Administrators only.
+</h4>
 <div *ngIf="currentUser | async; let currentUser">
   <div *ngIf="currentUser.name == ''" class="grid-y" style="height: 200px;">            
     <div class="grid-x">
