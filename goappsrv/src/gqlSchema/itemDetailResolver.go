@@ -25,16 +25,21 @@ func (r *Resolver) GetItem(ctx context.Context, args *struct{Lookup itemFilter})
   }   
   
   helper.Log(c, "info", "Started")
+  helper.Log(c, "info", "Item Lookup", "uid", c.UID, )
+
   
   var foundItem *model.ItemDetail
   var loadItemErr error
   
   switch args.Lookup.IdType {
     case "Int":
+      helper.Log(c, "info", "Item Lookup by Item ID", "uid", c.UID, "itemId", args.Lookup.Id)    
       foundItem, loadItemErr = model.LoadItemDetail(c.Ctx, args.Lookup.Id)
     case "Ext":
+      helper.Log(c, "info", "Item Lookup by External ID", "uid", c.UID, "extId", args.Lookup.Id)    
       foundItem, loadItemErr = model.LoadItemDetailByExtID(c.Ctx, args.Lookup.Id)
     case "ETP":
+      helper.Log(c, "info", "Item Lookup by ETP", "uid", c.UID, "extId", args.Lookup.Id, "type", args.Lookup.Type, "parentId", args.Lookup.ParentId)   
       foundItem, loadItemErr = model.LoadItemDetailByETP(c.Ctx, args.Lookup.Id, args.Lookup.Type, args.Lookup.ParentId)
     default:
       helper.Log(c, "warning", "IdType not valid", "uid", c.UID, "id", args.Lookup.Id)

@@ -5,7 +5,8 @@ import { Component, OnInit, Input } from '@angular/core';
  */
 @Component({
   selector: 'guestInfoTable',
-  templateUrl: 'guestInfoTable.component.html'
+  templateUrl: 'guestInfoTable.component.html',
+  styleUrls: ['guestInfo.component.css'],
 })
 
 export class GuestInfoTable implements OnInit {

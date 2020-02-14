@@ -11,11 +11,13 @@ import (
   "X/goappsrv/src/service"
 )
 
-func (r *Resolver) UpdateGuests(ctx context.Context, args *struct{AirTableId string}) (*importStatusResolver, error) {
+
+
+func (r *Resolver) UpdateTeamLeads(ctx context.Context, args *struct{AirTableId string}) (*importStatusResolver, error) {
   auth := ctx.Value("AUTH").(model.AuthPayload)
   c := helper.ContextDetail {
       Ctx: ctx.Value("GAE").(context.Context),
-      FunctionName: "UpdateGuests",
+      FunctionName: "UpdateTeamLeads",
       TranID: auth.TranID,
       UID: auth.UID,
       ProductID: "",
@@ -58,6 +60,7 @@ func (r *Resolver) UpdateGuests(ctx context.Context, args *struct{AirTableId str
     if loadItemErr != nil {
       helper.Log(c, "warning", "Error loading item detail by ref ID", "uid", c.UID, "refId", airTableRecords.Records[i].Id)
     }
+    
     if (*foundItem).ID != "" {
       itemID = (*foundItem).ID
     } 
@@ -66,21 +69,21 @@ func (r *Resolver) UpdateGuests(ctx context.Context, args *struct{AirTableId str
     guestItem := &model.ItemDetail {
       ID: itemID,
       ParentID: args.AirTableId,
-      Type: "guest",
+      Type: "teamlead",
       ExtID: airTableRecords.Records[i].Id,
       Name: airTableRecords.Records[i].Fields.Name,
       Description: string(bytesField),
       ExtSync: airTableRecords.Records[i].Fields.LastModified,
     }
-    
-    if foundItem.ExtSync != guestItem.ExtSync {
+
+    if foundItem.ExtSync != guestItem.ExtSync  {
       if guestItem.ID == "" {
-        helper.Log(c, "info", "Guest Item Created", "id", guestItem.ID, "extID", guestItem.ExtID)
+        helper.Log(c, "info", "Team Lead Item Created", "id", guestItem.ID, "extID", guestItem.ExtID)
         log.Println(foundItem)
         importStatus.Created = importStatus.Created + 1
       } else {
         importStatus.Modified = importStatus.Modified + 1
-        helper.Log(c, "info", "Guest Item Modified", "id", guestItem.ID, "extID", guestItem.ExtID)
+        helper.Log(c, "info", "Team Lead Item Modified", "id", guestItem.ID, "extID", guestItem.ExtID)
       }
       guestItem, err = service.PostItemDetail(c, guestItem)
       

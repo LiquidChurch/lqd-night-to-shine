@@ -4,11 +4,11 @@ import { Component } from '@angular/core';
  * GuestLookup component
  */
 @Component({
-  templateUrl: 'guestLookup.component.html',
+  templateUrl: 'roleDocs.component.html',
   styleUrls: ['guestLookup.component.css'],
 })
 
-export class GuestLookupComponent {
+export class RoleDocsComponent {
   constructor() {
   }
 

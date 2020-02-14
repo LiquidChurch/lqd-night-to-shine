@@ -1,0 +1,7 @@
+indexes:
+
+- kind: ItemDetail
+  properties:
+  - name: ExtID
+    direction: asc
+  

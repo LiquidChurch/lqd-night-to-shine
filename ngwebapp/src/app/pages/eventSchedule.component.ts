@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
 
 /**
- * GuestLookup component
+ * Event Schedule component
  */
 @Component({
-  templateUrl: 'guestLookup.component.html',
+  templateUrl: 'eventSchedule.component.html',
   styleUrls: ['guestLookup.component.css'],
 })
 
-export class GuestLookupComponent {
+export class EventScheduleComponent {
   constructor() {
   }
-
 }

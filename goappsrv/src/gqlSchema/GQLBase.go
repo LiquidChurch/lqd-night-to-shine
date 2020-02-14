@@ -32,7 +32,11 @@ var Schema = `
     # Create Item Detail endpoint
     postItemDetail(postItem: ItemInput!): ItemDetail
     # Get Guest update
-    updateGuests(airTableId: String!): [ItemDetail]
+    updateGuests(airTableId: String!): ImportStatus
+    # Get Team Lead update
+    updateTeamLeads(airTableId: String!): ImportStatus
+    # Update Air Table Records
+    updateAirTable(params: UpdateAirTable!): ImportStatus
   }
 
   type HealthDetail {
@@ -88,7 +92,19 @@ var Schema = `
     # Item Background Color
     color: String!
   }
-
+  
+  # Import Status
+  type ImportStatus{
+    # Number Created
+    created: Int!
+    # Number Modified
+    modified: Int!
+    # Number Skipped
+    skipped: Int!
+    # Total records
+    total: Int!
+  }
+  
   # Get Item Filter 
   input ItemFilter {
     id: String!
@@ -97,6 +113,13 @@ var Schema = `
     idType: String!
   }
 
+  # Update Airtable Input
+  input UpdateAirTable {
+    airTableId: String!
+    recordType: String!
+    forceUpdate: Boolean!
+  }
+  
   # Post Item Input
   input ItemInput {
     id: String!

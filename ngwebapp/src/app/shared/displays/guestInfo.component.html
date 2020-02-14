@@ -1,10 +1,54 @@
-<div class="grid-x">
-  <div class="cell small-12">
-    <h4>Guest info</h4>
-  </div>
-  <div class="cell small-12">
-      <div *ngIf="guestDescription | async; let guestDescription">
-         <guestInfoTable [guestInfo]="guestDescription"></guestInfoTable>
+<!-- <div [offcanvas]="isOffcanvas"
+  class="off-canvas position-bottom"
+  id="offCanvasMenuBottom"
+  aria-hidden="true"
+  #offcanvasBottom="bs-offcanvas"> -->
+
+  <div class="grid-x grid-padding-x">
+    <div class="cell">
+      <div *ngIf = "!itemFound">
+        <h4>
+          No Record Found
+        </h4>
+        <p>
+          If you feel that you have reached this in error, please contact IT Department.
+        </p>
+      </div>
+      
+      <div *ngIf="itemFound">
+        <div *ngIf="guestDetail | async; let guestDetail">
+
+          <ng-container *ngIf="guestDetail != undefined">
+            
+            <div *ngIf="guestDetail.type == 'guest'" class="grid-x">
+              <div class="cell small-12">
+                <h3 class="name-pad">
+                    {{ guestDetail.name }}
+                </h3>
+              </div>
+              <div class="cell small-12">    
+                <guestInfoTable [guestInfo]="guestDetail.description"></guestInfoTable>
+              </div>
+            </div>
+          
+            <div *ngIf="guestDetail.type == 'teamlead'" class="grid-x">
+              <div class="cell small-12">
+                <h3 class="name-pad">
+                    {{ guestDetail.name }}
+                </h3>
+              </div>
+              <div class="cell small-12">    
+                <teamLeadTable [teamLead]="guestDetail.description"></teamLeadTable>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>      
     </div>
   </div>
+
+<!--  <button class="close-button" aria-label="Close Menu" aria-controls="offCanvasMenu" type="button" (click)="closePanel()">
+    <span aria-hidden="true"><fa-icon [icon]="['far', 'times-square']" size="xs"></fa-icon></span>
+  </button>
 </div>
+-->

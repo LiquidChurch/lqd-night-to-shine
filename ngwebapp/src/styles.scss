@@ -1,5 +1,8 @@
 // Import Variables, Foundation Core, and Custom App Styles
 // --------------------------------------------------------
+$offcanvas-vertical-sizes: (
+  small: 550px,
+);
 
 // Import Foundation for Sites
 @import '~foundation-sites/scss/foundation';
@@ -62,3 +65,4 @@
 
 // Import Angular ngx-foundation Framework Added Styles 
 @import "~ngx-foundation/assets/scss/main";
+

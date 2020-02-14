@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
  */
 @Component({
   templateUrl: 'notFound.component.html',
+  styleUrls: ['guestLookup.component.css'],
 })
 
 export class NotFoundComponent {

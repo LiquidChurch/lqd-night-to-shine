@@ -10,12 +10,13 @@ type ItemDetail struct {
   ID              string
   ParentID        string
   Type            string
-  Name            string
-  Description     string
-  WebURL          string
-  Color           string
-  Role            string
-  ExtID           string
+  Name            string `datastore:",noindex"`
+  Description     string `datastore:"-"`
+  ByteDescription []byte `datastore:",noindex"`
+  WebURL          string `datastore:",noindex"`
+  Color           string `datastore:",noindex"`
+  Role            string `datastore:",noindex"`
+  ExtID           string  
   ExtSync         string
   CreatedTime     time.Time
   UpdatedTime	    time.Time
@@ -38,7 +39,8 @@ var NullItemDetail = &ItemDetail {
 
 func SaveItemDetail(ctx context.Context, indexKey string, saveRecord *ItemDetail) error {
   dbKind := "ItemDetail"
-    
+  
+  saveRecord.ByteDescription = []byte(saveRecord.Description)
   //generic save func, no parent key
   key := datastore.NewKey(ctx, dbKind, indexKey, 0, nil)
   if _, err := datastore.Put(ctx, key, saveRecord); err != nil {
@@ -56,6 +58,8 @@ func LoadItemDetail(ctx context.Context, indexKey string) (*ItemDetail, error) {
   if err := datastore.Get(ctx, key, &foundRecord); err != nil {
     return NullItemDetail, err             
   }
+  
+  foundRecord.Description = string(foundRecord.ByteDescription)
   return &foundRecord, nil
 }
 
@@ -95,6 +99,7 @@ func LoadItemDetailByExtID(ctx context.Context, extID string) (*ItemDetail, erro
     foundRecords = append(foundRecords, *NullItemDetail)
   }
   
+  foundRecords[0].Description = string(foundRecords[0].ByteDescription)
   return &foundRecords[0], nil  
 }
 
@@ -115,7 +120,8 @@ func LoadItemDetailByETP(ctx context.Context, extID string, itemType string, par
   if len(foundRecords) == 0 {
     foundRecords = append(foundRecords, *NullItemDetail)
   }
-  
+
+  foundRecords[0].Description = string(foundRecords[0].ByteDescription)
   return &foundRecords[0], nil  
 }
 

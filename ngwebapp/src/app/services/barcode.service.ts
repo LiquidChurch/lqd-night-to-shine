@@ -24,6 +24,7 @@ export class BarcodeService {
 
   success(barcode: string, keepAfterNavigationChange = false) {
     this.keepAfterNavigationChange = keepAfterNavigationChange;
+    console.log("barcodeService", barcode);
     setTimeout(() => this.subject.next({ type: 'success', text: barcode }), 0);
   }
 

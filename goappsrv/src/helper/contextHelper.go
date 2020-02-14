@@ -30,7 +30,7 @@ func Log(c ContextDetail, level string, action string, args ...string) {
   } 
 
   if len(args) >= 4 {
-    argsString = argsString + "\", \"" + args[2] + "\":\"" + args[3] + "\""    
+    argsString = argsString + ", \"" + args[2] + "\":\"" + args[3] + "\""    
   }
 
   logString := "{" + funcString + ", " + txnIDString +  ", " + uIDString + ", " + levelString + ", " + actionString + argsString + "}"

@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
 
 /**
- * GuestLookup component
+ * Site map component
  */
 @Component({
-  templateUrl: 'guestLookup.component.html',
+  templateUrl: 'siteMap.component.html',
   styleUrls: ['guestLookup.component.css'],
 })
 
-export class GuestLookupComponent {
+export class SiteMapComponent {
   constructor() {
   }
-
 }

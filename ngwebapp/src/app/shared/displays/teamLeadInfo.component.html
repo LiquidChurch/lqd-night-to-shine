@@ -1,0 +1,50 @@
+<div>
+  <ng-container *ngIf="obj != undefined">
+    <h4>
+      <b>Team: </b>{{ obj['TEAMS'] }}
+    </h4>
+    <h4>
+      <b>Role: </b>{{ obj['ROLE'] }}
+    </h4>
+    <h4>
+      <b>Event Map Map: </b>
+        <a routerLink="/site-plan" routerLinkActive="active">
+        Night To Shine Map
+        </a>
+    </h4>
+    <h4>
+      <b>Schedule: </b>
+        <a routerLink="/schedule" routerLinkActive="active">
+        Schedule of Events
+        </a>
+    </h4>
+    <h4>
+      <b>Role Overview Documents:</b>
+    </h4>
+      <ul>
+        <li *ngFor="let object of obj['ROLE OVERVIEW']">
+          <a href="{{ object['url']}}">{{ object['filename'] }}</a>
+        </li>
+      </ul>
+    <ng-container *ngIf="obj['Team Roster List'] != undefined">
+    <h4>
+      <b>Team Roster: </b>
+    </h4>
+      {{ obj['Team Roster List'] }}
+  </ng-container>
+    </ng-container>
+</div>
+
+
+  <!-- table>
+    <tbody class="fixed-header">
+       <tr>
+        <td>Team</td>
+        <td>{{ obj['TEAMS'] }}</td>
+      </tr>
+       <tr>
+        <td>Role</td>
+        <td>{{ obj['ROLE'] }}</td>
+      </tr>
+    </tbody>
+  </table -->

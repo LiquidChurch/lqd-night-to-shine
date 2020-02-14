@@ -1,8 +1,8 @@
 package gqlSchema
 
 import (
-  "log"
   "time"
+  "errors"
   "context"
   "encoding/json"
 
@@ -11,35 +11,52 @@ import (
   "X/goappsrv/src/service"
 )
 
-func (r *Resolver) UpdateGuests(ctx context.Context, args *struct{AirTableId string}) (*importStatusResolver, error) {
+type updateInput struct {
+  AirTableId    string
+  RecordType    string
+  ForceUpdate   bool
+}
+
+func (r *Resolver) UpdateAirTable(ctx context.Context, args *struct{Params updateInput}) (*importStatusResolver, error) {
   auth := ctx.Value("AUTH").(model.AuthPayload)
   c := helper.ContextDetail {
       Ctx: ctx.Value("GAE").(context.Context),
-      FunctionName: "UpdateGuests",
+      FunctionName: "UpdateAirTableMutation",
       TranID: auth.TranID,
       UID: auth.UID,
       ProductID: "",
   }   
   
   helper.Log(c, "info", "Started")
-//  isAuthorized := helper.AuthCheck(auth, "site", "write")
+  if (c.UID == "00000000000000000000000000") {
+    helper.Log(c, "warning", "No User Logged in", "uid", c.UID)
+    err := errors.New("No Logged in user`")
+    return nil, err
+  }
+
   
-//  if (auth.SiteID != "00000000000000000000000000" || isAuthorized == false) {
-//    helper.Log(c, "warning", "update church not authorized", "uid", c.UID)
-//    err := errors.New("Not Authorized")
-//    return nil, err
-//  }
+  isAuthorized := helper.AuthCheck(auth, "site", "write")
+  
+  if (c.UID == "00000000000000000000000000" || auth.SiteID != "00000000000000000000000000" || isAuthorized == false) {
+    helper.Log(c, "warning", "Update Airtable not authorized", "uid", c.UID)
+    err := errors.New("Not Authorized")
+    return nil, err
+  }
  
-  airTableDetail, loadAirTableDetailErr := model.LoadItemDetail(c.Ctx, args.AirTableId)
+  airTableDetail, loadAirTableDetailErr := model.LoadItemDetail(c.Ctx, args.Params.AirTableId)
   
-  if loadAirTableDetailErr != nil {
-    helper.Log(c, "error", "invalid airtable Id", "uid", c.UID, "airTableId", args.AirTableId)
+  if (loadAirTableDetailErr != nil || airTableDetail.ID != args.Params.AirTableId ){
+    helper.Log(c, "error", "invalid airtable Id", "uid", c.UID, "airTableId", args.Params.AirTableId)
+    err := errors.New("AirTableId not found")
+    return nil, err    
   }
   
   airTableRecords, err := service.LoadAirTable(c, *airTableDetail)
   
   if err != nil {
     helper.Log(c, "warning", "Error loading air table", "uid", c.UID, "error", err.Error())
+    err := errors.New("Error accessing airtable API")
+    return nil, err
   }
 
   // var guestItemsResolver []*itemDetailResolver
@@ -65,30 +82,31 @@ func (r *Resolver) UpdateGuests(ctx context.Context, args *struct{AirTableId str
     bytesField, _ := json.Marshal(airTableRecords.Records[i].Fields)
     guestItem := &model.ItemDetail {
       ID: itemID,
-      ParentID: args.AirTableId,
-      Type: "guest",
+      ParentID: args.Params.AirTableId,
+      Type: args.Params.RecordType,
       ExtID: airTableRecords.Records[i].Id,
       Name: airTableRecords.Records[i].Fields.Name,
       Description: string(bytesField),
       ExtSync: airTableRecords.Records[i].Fields.LastModified,
     }
     
+    if (args.Params.ForceUpdate) {
+      foundItem.ExtSync = ""
+    }
+    
     if foundItem.ExtSync != guestItem.ExtSync {
       if guestItem.ID == "" {
-        helper.Log(c, "info", "Guest Item Created", "id", guestItem.ID, "extID", guestItem.ExtID)
-        log.Println(foundItem)
+        helper.Log(c, "info", "Item Created", "itemID", guestItem.ID, "extID", guestItem.ExtID)
         importStatus.Created = importStatus.Created + 1
       } else {
+        helper.Log(c, "info", "Item Modified", "itemID", guestItem.ID, "extID", guestItem.ExtID)
         importStatus.Modified = importStatus.Modified + 1
-        helper.Log(c, "info", "Guest Item Modified", "id", guestItem.ID, "extID", guestItem.ExtID)
       }
       guestItem, err = service.PostItemDetail(c, guestItem)
       
     } else {
-      // helper.Log(c, "info", "No change to guest detail", "RefID", guestItem.ExtID)
       importStatus.Skipped = importStatus.Skipped + 1   
     }
-    // guestItemsResolver = append(guestItemsResolver, &itemDetailResolver{c, guestItem})
   }
   
   importStatus.Total = importStatus.Created + importStatus.Modified + importStatus.Skipped
