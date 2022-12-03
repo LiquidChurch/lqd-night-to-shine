@@ -37,6 +37,8 @@ var Schema = `
     updateTeamLeads(airTableId: String!): ImportStatus
     # Update Air Table Records
     updateAirTable(params: UpdateAirTable!): ImportStatus
+    # Checkin Guest
+    postCheckinDetail(checkinInput: CheckinDetail!): ItemDetail
   }
 
   type HealthDetail {
@@ -120,6 +122,12 @@ var Schema = `
     forceUpdate: Boolean!
   }
   
+  # Checkin Detail Input
+  input CheckinDetail {
+    id: String!
+    description: String!
+  }
+
   # Post Item Input
   input ItemInput {
     id: String!

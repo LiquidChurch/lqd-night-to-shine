@@ -1,0 +1,122 @@
+<div>
+  <ng-container *ngIf="obj != undefined">
+
+ <form>
+  <div class="grid-container">
+        
+      <div *ngIf="obj['Prom Day'] == undefined" class="grid-x grid-padding-x">
+        <h4>New Registration Entry</h4>
+        <div class="small-12 cell">
+          <label>Guest First Name
+            <input type="text" name="firstName" [(ngModel)]="obj['Name']">
+          </label>
+        </div>
+        <div class="small-12 cell">
+          <label>Guest Last Name
+            <input type="text" name="LastName" [(ngModel)]="obj['Guest Last Name']">
+          </label>
+        </div>
+        <div class="small-12 cell">
+          <label>Gender
+            <select name="gender" [(ngModel)]="obj['Gender']">
+              <option value="m">Male</option>
+              <option value="f">Female</option>
+            </select>
+          </label>
+        </div>        
+        <div class="small-12 cell">
+          <label>Level of Supervision
+            <select name="los" [(ngModel)]="obj['Level of Supervision']">
+              <option value="Minimal">Minimal</option>
+              <option value="Moderate">Moderate</option>
+              <option value="Constant">Constant</option>
+            </select>
+          </label>
+        </div>
+        <div class="small-12 cell">
+          <label>Bathroom Assistance
+            <select name="ba" [(ngModel)]="obj['Bathroom Assistance']">
+              <option value="Minimal">Minimal</option>
+              <option value="Moderate">Moderate</option>
+              <option value="Complete">Complete</option>
+            </select>
+          </label>
+        </div>
+        <div class="small-12 cell">
+          <label>Special Need Description
+            <textarea placeholder="Special Need Description" name="SNDesc" [(ngModel)]="obj['SN Description']"></textarea>
+          </label>
+        </div>
+        <div class="small-12 cell">
+          <label>Dietary Restrictions/Sensory Sensitivity
+            <textarea placeholder="Dietary Restrictions or Sensory Sensitivity" name="notes" [(ngModel)]="obj['NOTES']"></textarea>
+          </label>
+        </div>
+        <div class="small-12 cell">
+          <label>Mobility Assistance
+            <textarea placeholder="Mobility Assistance" name="mobility" [(ngModel)]="obj['Mobility Assistance']"></textarea>
+          </label>
+        </div>
+        <div class="small-12 cell">
+          <label>Communication Assistance
+            <textarea placeholder="Communication Assistance" name="communication" [(ngModel)]="obj['Communication Assistance']"></textarea>
+          </label>
+        </div>
+        <div class="small-12 cell">
+          <label>Limo
+            <select name="limo" [(ngModel)]="obj['Limo']">
+              <option value="No">No</option>
+              <option value="Yes">Yes</option>
+            </select>
+          </label>
+        </div>   
+      </div>
+   
+
+    
+    <div class="grid-x grid-padding-x">
+      <h4>Contact Info</h4>
+      <div class="small-12 cell">
+        <label>Contact Name
+          <input type="text" name="contactName" [(ngModel)]="obj['Contact Name']">
+        </label>
+      </div>
+      <div class="small-12 cell">
+        <label>Contact Number
+          <input type="text" name="contactNumber" [(ngModel)]="obj['Contact #']">
+        </label>
+      </div>
+      <div class="small-12 cell">
+        <label>Respite Room
+          <select name="respiteRoom" [(ngModel)]="obj['Respite Room']">
+            <option value="">No</option>
+            <option value="Yes">Yes</option>
+          </select>
+        </label>
+      </div>
+      <div class="small-12 cell">
+        <label>Medication During Prom          
+          <select name="medication" [(ngModel)]="obj['Medication During Prom']">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+          </select>
+        </label>
+      </div>
+      <div class="small-12 cell">
+        <label>Time of Medication
+          <input type="text" name="medicationTime" [(ngModel)]="obj['Time of Medication']">
+        </label>
+      </div>
+      <div class="small-12 cell">
+        <label>Pager Number
+          <input type="text" name="pagerNumber" [(ngModel)]="obj['Pager Number']">
+        </label>
+      </div>
+      <div class="cell small-4">
+        <button class="submit warning button" (click)="confirmCheckin()">Confirm Check In</button>
+      </div>
+    </div>
+  </div>
+</form>
+  </ng-container>
+</div>

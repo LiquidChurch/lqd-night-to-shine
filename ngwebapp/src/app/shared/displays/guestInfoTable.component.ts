@@ -18,11 +18,6 @@ export class GuestInfoTable implements OnInit {
   constructor() {}
   
   ngOnInit() {
-    console.log("guest info table");
-    console.log(this.guestInfo);
-    
     this.obj = JSON.parse(this.guestInfo)
-    console.log(this.obj['Guest Name']);
-  
   }
 }

@@ -2,18 +2,12 @@ package gqlSchema
 
 import (
   "X/goappsrv/src/helper"
+  "X/goappsrv/src/model"
 )
-
-type ImportStatus struct {
-  Created   int32
-  Modified  int32
-  Skipped   int32
-  Total     int32
-}
 
 type importStatusResolver struct {
   c helper.ContextDetail
-  u *ImportStatus
+  u *model.ImportStatus
 }
 
 func (r *importStatusResolver) Created() int32 {

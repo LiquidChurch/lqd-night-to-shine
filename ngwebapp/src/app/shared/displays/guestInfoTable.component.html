@@ -2,7 +2,7 @@
   <ng-container *ngIf="obj != undefined">
   <table>
     <tbody class="fixed-header">
-       <tr>
+      <tr>
         <td>Full Name</td>
         <td>{{ obj['Guest First Name'] }} {{ obj['Guest Last Name'] }}</td>
       </tr>
@@ -19,70 +19,57 @@
         <td>{{ obj['Level of Supervision'] }}</td>
       </tr>
       <tr>
+        <td>Level of Bathroom Assistance</td>
+        <td>{{ obj['Bathroom Assistance'] }}</td>
+      </tr>      
+      <tr>
         <td>SN Description</td>
         <td>{{ obj['SN Description'] }}</td>
       </tr>
        <tr>
-        <td>Additional Notes</td>
-        <td>{{ obj['NOTES'] }}</td>
+        <td>Dietary Restrictions/Sensory Sensitivity</td>
+        <td>{{ obj['NOTES'] }}
+        <ng-container *ngIf="obj != undefined">
+          <li *ngFor="let object of obj['Dietary Restrictions']">
+            {{object}}
+          </li>
+          <li *ngFor="let object of obj['Sensory']">
+            {{object}}
+          </li>
+        </ng-container>
+        </td>
+      </tr>
+      <tr>
+        <td>Mobility Assistance</td>
+        <td>{{ obj['Mobility Assistance'] }}</td>
+      </tr>
+      <tr>
+        <td>Communication Assistance</td>
+        <td>{{ obj['Communication Assistance'] }}</td>
       </tr>
       <tr>
         <td>Respite Room</td>
-        <td>
-          <ng-container *ngIf="obj != undefined">
-            <li *ngFor="let object of obj['Respite Room']">
-              {{object}}
-            </li>
-          </ng-container>
-        </td>
+        <td>{{ obj['Respite Room'] }}</td>
       </tr>
       <tr>
         <td>Specific Buddy</td>
         <td>{{ obj['Specific Buddy'] }}</td>
       </tr>
       <tr>
-        <td>Level of Bathroom Assistance</td>
-        <td>{{ obj['Level of Bathroom Assistance'] }}</td>
+        <td>Medication/Time of Medication/Pager Number</td>
+        <td>{{ obj['Medication During Prom'] }} / {{ obj['Time of Medication'] }} / {{ obj['Pager Number'] }}</td>
       </tr>
       <tr>
-        <td>Medication During Prom</td>
-        <td>{{ obj['Medication During Prom'] }}</td>
+        <td>Mobility Assistance</td>
+        <td>{{ obj['Mobility Assistance'] }}</td>
       </tr>
       <tr>
-        <td>Time of Medication</td>
-        <td>{{ obj['Time of Medication'] }}</td>
-      </tr>
-      <tr>
-        <td>Dietary Restrictions</td>
-        <td>
-          <ng-container *ngIf="obj != undefined">
-            <li *ngFor="let object of obj['Dietary Restrictions']">
-              {{object}}
-            </li>
-          </ng-container>
-        </td>
-      </tr>
-      <tr>
-        <td>Sensory</td>
-        <td>
-          <ng-container *ngIf="obj != undefined">
-            <li *ngFor="let object of obj['Sensory']">
-              {{object}}
-            </li>
-          </ng-container>
-        </td>
-      </tr>
-      <tr>
-        <td>Cherry On Top</td>
-        <td>{{ obj['Cherry On Top'] }}</td>
+        <td>Communication Assistance</td>
+        <td>{{ obj['Communication Assistance'] }}</td>
       </tr>
       <tr>
         <td>Limo</td>
         <td>{{ obj['Limo'] }}</td>
-      </tr>
-      <tr>
-        <td>Pager Number</td>
-        <td>{{ obj['Pager Number'] }}</td>
       </tr>
       <tr>
         <td>Contact Name</td>

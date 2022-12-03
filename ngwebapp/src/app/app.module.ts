@@ -10,18 +10,18 @@ import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontaweso
 import { faSignIn, faTimesSquare, faPencilAlt, faCheckSquare, faPlusCircle, faCopyright, faBars, faUserAlt, faExclamationTriangle, faFlashlight, faArrowAltSquareLeft, faQrcode, faHome } from '@fortawesome/pro-regular-svg-icons';
 import { CookieService } from 'ngx-cookie-service';
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
-import { AlertModule, BsDropdownModule, ModalModule, OffcanvasModule } from 'ngx-foundation';
+import { AlertModule, ButtonsModule, BsDropdownModule, ModalModule, OffcanvasModule, TabsModule } from 'ngx-foundation';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 import { AuthConfig } from './configs';
 import { GraphQLModule } from './graphql.module';
 
-import { HomePageComponent, NotFoundComponent, GuestLookupComponent, BarcodeLookupComponent } from './pages';
+import { HomePageComponent, NotFoundComponent, GuestLookupComponent, BarcodeLookupComponent, CheckinGuestComponent } from './pages';
 import { SiteMapComponent, EventScheduleComponent, RoleDocsComponent } from './pages';
 
 import { TopBarComponent, BottomBarComponent } from './shared/layouts';
 import { BarcodeScannerComponent } from './shared/tools';
-import { GuestInfoComponent, GuestInfoTable, TeamLeadTable } from './shared/displays';
+import { GuestInfoComponent, GuestInfoTable, VerifyInfoForm, TeamLeadTable } from './shared/displays';
 
 import { LoginModalComponent } from './modals';
 
@@ -36,10 +36,12 @@ import { CurrentUserController } from './controllers';
     NotFoundComponent,
     GuestLookupComponent,
     BarcodeLookupComponent,
+    CheckinGuestComponent,
     TopBarComponent,
     BottomBarComponent,
     GuestInfoComponent,
     GuestInfoTable,
+    VerifyInfoForm,
     TeamLeadTable,
     LoginModalComponent,
     BarcodeScannerComponent,
@@ -52,9 +54,11 @@ import { CurrentUserController } from './controllers';
     FormsModule,
     AppRoutingModule,
     ModalModule.forRoot(),
+    ButtonsModule.forRoot(),
     AlertModule.forRoot(),
     BsDropdownModule.forRoot(),
     OffcanvasModule.forRoot(),
+    TabsModule.forRoot(),
     FontAwesomeModule,
     ZXingScannerModule,
     SocialLoginModule,

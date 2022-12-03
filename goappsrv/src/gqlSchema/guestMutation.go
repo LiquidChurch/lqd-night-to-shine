@@ -1,7 +1,6 @@
 package gqlSchema
 
 import (
-  "log"
   "time"
   "context"
   "encoding/json"
@@ -44,7 +43,7 @@ func (r *Resolver) UpdateGuests(ctx context.Context, args *struct{AirTableId str
 
   // var guestItemsResolver []*itemDetailResolver
   
-  importStatus := &ImportStatus {
+  importStatus := &model.ImportStatus {
     Created: 0,
     Modified: 0,
     Skipped: 0,
@@ -54,9 +53,9 @@ func (r *Resolver) UpdateGuests(ctx context.Context, args *struct{AirTableId str
   for i, _ := range airTableRecords.Records {
     itemID := "" 
     time.Sleep(50 * time.Millisecond)
-    foundItem, loadItemErr := model.LoadItemDetailByExtID(c.Ctx, airTableRecords.Records[i].Id)
+    foundItem, loadItemErr := model.LoadItemDetailByExtID(c.Ctx, airTableRecords.Records[i].Fields.QRValue)
     if loadItemErr != nil {
-      helper.Log(c, "warning", "Error loading item detail by ref ID", "uid", c.UID, "refId", airTableRecords.Records[i].Id)
+      helper.Log(c, "warning", "Error loading item detail by ref ID", "uid", c.UID, "refId", airTableRecords.Records[i].Fields.QRValue)
     }
     if (*foundItem).ID != "" {
       itemID = (*foundItem).ID
@@ -67,7 +66,7 @@ func (r *Resolver) UpdateGuests(ctx context.Context, args *struct{AirTableId str
       ID: itemID,
       ParentID: args.AirTableId,
       Type: "guest",
-      ExtID: airTableRecords.Records[i].Id,
+      ExtID: airTableRecords.Records[i].Fields.QRValue,
       Name: airTableRecords.Records[i].Fields.Name,
       Description: string(bytesField),
       ExtSync: airTableRecords.Records[i].Fields.LastModified,
@@ -76,7 +75,6 @@ func (r *Resolver) UpdateGuests(ctx context.Context, args *struct{AirTableId str
     if foundItem.ExtSync != guestItem.ExtSync {
       if guestItem.ID == "" {
         helper.Log(c, "info", "Guest Item Created", "id", guestItem.ID, "extID", guestItem.ExtID)
-        log.Println(foundItem)
         importStatus.Created = importStatus.Created + 1
       } else {
         importStatus.Modified = importStatus.Modified + 1

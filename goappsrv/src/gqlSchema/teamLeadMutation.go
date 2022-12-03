@@ -46,7 +46,7 @@ func (r *Resolver) UpdateTeamLeads(ctx context.Context, args *struct{AirTableId 
 
   // var guestItemsResolver []*itemDetailResolver
   
-  importStatus := &ImportStatus {
+  importStatus := &model.ImportStatus {
     Created: 0,
     Modified: 0,
     Skipped: 0,

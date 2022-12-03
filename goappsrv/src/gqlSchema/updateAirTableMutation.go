@@ -61,7 +61,7 @@ func (r *Resolver) UpdateAirTable(ctx context.Context, args *struct{Params updat
 
   // var guestItemsResolver []*itemDetailResolver
   
-  importStatus := &ImportStatus {
+  importStatus := &model.ImportStatus {
     Created: 0,
     Modified: 0,
     Skipped: 0,

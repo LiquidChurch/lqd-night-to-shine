@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-
+import { Component, ViewChild } from '@angular/core';
+import { TabsetComponent } from 'ngx-foundation';
 /**
  * GuestLookup component
  */
@@ -11,5 +11,8 @@ import { Component } from '@angular/core';
 export class RoleDocsComponent {
   constructor() {
   }
-
+  @ViewChild('wteTabs', {static: false}) wteTabs: TabsetComponent;
+  
+  
+  
 }

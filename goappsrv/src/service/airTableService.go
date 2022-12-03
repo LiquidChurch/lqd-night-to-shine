@@ -12,63 +12,9 @@ import (
   "X/goappsrv/src/model"
 )
 
-type airTableRecord struct {
-  Id      string        `json:"id"`
-  Fields  guestField    `json:"fields"`
-}
-
-type AirTableList struct {
-  Records []airTableRecord  `json:"records"`
-  Offset  string            `json:"offset,omitempty"` 
-}
-
-type qrImageStruct struct {
-  Id        string        `json:"id,omitempty"`
-  Url       string        `json:"url"`
-  FileName  string        `json:"filename"`
-}
-
-type roleOverview struct {
-  FileName  string        `json:"filename"`
-  Url       string        `json:"url"`
-}
-
-type guestField struct {
-  Name            string          `json:"Name,omitempty"`
-  FirstName       string          `json:"Guest First Name,omitempty"`
-  LastName        string          `json:"Guest Last Name,omitempty"`
-  PromDay         string          `json:"Prom Day,omitempty"`
-  Gender          string          `json:"Gender,omitempty"`
-  LOSupervision   string          `json:"Level of Supervision,omitempty"`
-  SNDescription   string          `json:"SN Description,omitempty"`
-  RespiteRoom     []string        `json:"Respite Room,omitempty"`
-  SpecificBuddy   string          `json:"Specific Buddy,omitempty"`
-  LOBathroom      string          `json:"Level of Bathroom Assistance,omitempty"`
-  Medication      string          `json:"Medication During Prom,omitempty"`
-  DRestriction    []string        `json:"Dietary Restrictions,omitempty"`
-  Sensory         []string        `json:"Sensory,omitempty"`
-  CherryOnTop     string          `json:"Cherry On Top,omitempty"`
-  Limo            string          `json:"Limo,omitempty"`
-  ContactName     string          `json:"Contact Name,omitempty"`
-  ContactNumber   string          `json:"Contact #,omitempty"`
-  ContactEmail    string          `json:"Email,omitempty"`
-  MailingAddress  string          `json:"Mailing Address,omitempty"`
-  Notes           string          `json:"NOTES,omitempty"`
-  ArrivalTime     string          `json:"Arrival Time,omitempty"`
-  PagerNumber     string          `json:"Pager Number,omitempty"`
-  TimeOfMed       string          `json:"Time of Medication,omitempty"`
-  LastModified    string          `json:"Last Modified,omitempty"`
-  QRValue         string          `json:"QR Value,omitempty"`
-  QRImage         []qrImageStruct `json:"QR Image,omitempty"`
-  Teams           string          `json:"TEAMS,omitempty"`
-  Role            string          `json:"ROLE,omitempty"`
-  ROverview       []roleOverview  `json:"ROLE OVERVIEW,omitempty"`
-  TeamRoster      string          `json:"Team Roster List,omitempty"`
-}
-
-func LoadAirTable(c helper.ContextDetail, airTableDetail model.ItemDetail) (*AirTableList, error) {
+func LoadAirTable(c helper.ContextDetail, airTableDetail model.ItemDetail) (*model.AirTableList, error) {
   
-  var airTableList = new(AirTableList)
+  var airTableList = new(model.AirTableList)
   var offset = ""
   var isEnd = false;
   
@@ -116,7 +62,7 @@ func LoadAirTable(c helper.ContextDetail, airTableDetail model.ItemDetail) (*Air
       return nil, err
     }
 
-    var respJson = new(AirTableList)
+    var respJson = new(model.AirTableList)
 
     err = json.Unmarshal(body, &respJson)
     if err != nil {
@@ -158,20 +104,22 @@ func LoadQRCode(c helper.ContextDetail, airTableDetail model.ItemDetail, itemId 
       return http.ErrUseLastResponse
     },
   }
-  qrImage := qrImageStruct {
+  qrImage := model.QrImageStruct {
     Url: "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://nts.lqd.ch/" + itemId,
     FileName: "qrcode",
   }
   
-  qrImageArray := []qrImageStruct{qrImage}
+  qrImageArray := []model.QrImageStruct{qrImage}
 
-  bodyItem := airTableRecord {
+  bodyItem := model.AirTableRecord {
     Id: itemId,
   }
-
+  
+  helper.Log(c,"info","airtable record data", "airtablerecord", bodyItem.Id, "", "")
+  
   bodyItem.Fields.QRImage = qrImageArray
   bodyItem.Fields.QRValue = itemId
-  var bodyJson = new(AirTableList)
+  var bodyJson = new(model.AirTableList)
   
   bodyJson.Records = append(bodyJson.Records, bodyItem)
   

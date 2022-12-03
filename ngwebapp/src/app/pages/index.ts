@@ -5,3 +5,4 @@ export * from './barcodeLookup.component';
 export * from './siteMap.component';
 export * from './eventSchedule.component';
 export * from './roleDocs.component';
+export * from './checkinGuest.component';
